@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Platform } from "react-native";
 import { AuthContext } from "../../contexts/auth";
 
+
 import {
   Background,
   Container,
@@ -13,13 +14,16 @@ import {
 } from "../SignIn/styles";
 
 export default function SignUp() {
-  const { user } = useContext(AuthContext);  
-
-  console.log(user.nome);
+  const { signUp } = useContext(AuthContext);
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  function handleSignUp(){
+    signUp(email, password, nome);
+  }
+
   return (
     <Background>
       <Container behavior={Platform.OS === 'ios' ? 'padding' : ''} enabled>
@@ -52,7 +56,7 @@ export default function SignUp() {
           />
         </AreaInput>
 
-        <SubmitButton>
+        <SubmitButton onPress={handleSignUp}>
           <SubmitText>Cadastrar</SubmitText>
         </SubmitButton>
       </Container>

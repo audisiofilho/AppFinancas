@@ -23,8 +23,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
 
   function handleLogin(){
-    console.log(user.nome);
-    console.log(user.uid);
+
   }
 
   return (
