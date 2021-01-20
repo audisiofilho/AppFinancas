@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Platform } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { AuthContext } from '../../contexts/auth'
+import { AuthContext } from "../../contexts/auth";
 
 import {
   Background,
@@ -10,28 +9,30 @@ import {
   AreaInput,
   Input,
   SubmitButton,
-  SubmitText,
-  Link,
-  LinkText,
-} from "./styles";
+  SubmitText
+} from "../SignIn/styles";
 
-export default function SignIn() {
-  const navigation = useNavigation();
-  const { user } = useContext(AuthContext);
+export default function SignUp() {
+  const { user } = useContext(AuthContext);  
 
+  console.log(user.nome);
+
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  function handleLogin(){
-    console.log(user.nome);
-    console.log(user.uid);
-  }
-
   return (
     <Background>
       <Container behavior={Platform.OS === 'ios' ? 'padding' : ''} enabled>
-        <Logo source={require("../../assets/Logo.png")} />
 
+        <AreaInput>
+          <Input
+            placeholder="Nome"
+            autoCorret={false}
+            autoCapitalize="none"
+            value={nome}
+            onChangeText={(text) => setNome(text)}
+          />
+        </AreaInput>
         <AreaInput>
           <Input
             placeholder="Email"
@@ -41,7 +42,6 @@ export default function SignIn() {
             onChangeText={(text) => setEmail(text)}
           />
         </AreaInput>
-
         <AreaInput>
           <Input
             placeholder="Senha"
@@ -52,13 +52,9 @@ export default function SignIn() {
           />
         </AreaInput>
 
-        <SubmitButton onPress={handleLogin}>
-          <SubmitText>Acessar</SubmitText>
+        <SubmitButton>
+          <SubmitText>Cadastrar</SubmitText>
         </SubmitButton>
-
-        <Link onPress={ () => navigation.navigate('SignUp') }>
-          <LinkText>Criar uma conta!</LinkText>
-        </Link>
       </Container>
     </Background>
   );
