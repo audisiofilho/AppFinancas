@@ -17,13 +17,13 @@ import {
 
 export default function SignIn() {
   const navigation = useNavigation();
-  const { user } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleLogin(){
-
+    signIn(email, password);
   }
 
   return (
