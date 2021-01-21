@@ -14,7 +14,9 @@ export default function Home() {
     { key: "1", tipo: "receita", valor: 1200 },
     { key: "2", tipo: "despesa", valor: 200 },
     { key: "3", tipo: "receita", valor: 100 },
-    { key: "4", tipo: "receita", valor: 12.9 },
+    { key: "4", tipo: "receita", valor: 12.90 },
+    { key: "5", tipo: "despesa", valor: 500 },
+    { key: "6", tipo: "despesa", valor: 520 },
   ]);
 
   return (
@@ -28,10 +30,10 @@ export default function Home() {
       <Tittle>Ultimas movimentações</Tittle>
 
       <List
-        showVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         data={historico}
         keyExtractor={(item) => item.key}
-        renderItem={ ({ item }) => ( <HistoricoList/> ) }
+        renderItem={ ({ item }) => ( <HistoricoList data={item}/> ) }
       />
     </Background>
   );

@@ -3,17 +3,17 @@ import { View, Text } from 'react-native';
 import { Feather } from "@expo/vector-icons";
 import { Container, Tipo, IconView, TipoText, ValorText } from "./style";
 
-export default function HistoricoList() {
+export default function HistoricoList({ data }) {
  return (
    <Container>
        <Tipo>
-           <IconView>
-               <Feather name='arrow-up' color='#fff' size={20}/>
-               <TipoText>Receita</TipoText>
+           <IconView tipo={data.tipo}>
+               <Feather name={data.tipo === 'despesa' ? 'arrow-down' : 'arrow-up'} color='#fff' size={20} />
+               <TipoText>{data.tipo}</TipoText>
            </IconView>
        </Tipo>
        <ValorText>
-           R$ 900
+           R$ {data.valor}
        </ValorText>
    </Container>
   );

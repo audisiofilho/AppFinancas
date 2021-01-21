@@ -13,7 +13,7 @@ export const Tipo = styled.View`
 
 export const IconView = styled.View`
     flex-direction: row;
-    background-color: #049401;
+    background-color: ${props => props.tipo === 'despesa' ? '#c62c36' : '#049301'};
     padding-bottom: 3px;
     padding-top: 3px;
     padding-right: 8px;
