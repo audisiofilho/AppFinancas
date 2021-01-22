@@ -1,16 +1,21 @@
 import React from "react";
-import { RNPickerSelect } from "react-native-picker-select";
+import { Picker as RNPickerSelect } from "@react-native-picker/picker";
 
+import { PickerView } from "./style";
 
-import { PickeView } from "./styles";
-
-export default function Picker(){
-    return(
-        <PickeView>
-            <RNPickerSelect 
-                style={{}}
-            />
-
-        </PickeView>
-    )
+export default function Picker({ onChange, tipo }) {
+  return (
+    <PickerView>
+      <RNPickerSelect
+        style={{
+          width: "100%",
+        }}
+        selectedValue={tipo}
+        onValueChange={ (valor) => onChange(valor) }
+      >
+          <RNPickerSelect.Item label='Receita' value='receita'/>
+          <RNPickerSelect.Item label='Despesa' value='despesa'/>
+      </RNPickerSelect>
+    </PickerView>
+  );
 }
