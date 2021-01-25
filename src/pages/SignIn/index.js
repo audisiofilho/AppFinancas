@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { Platform, Keyboard } from "react-native";
+import { Platform, Keyboard, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { AuthContext } from '../../contexts/auth'
+import { AuthContext } from "../../contexts/auth";
 
 import {
   Background,
@@ -17,19 +17,19 @@ import {
 
 export default function SignIn() {
   const navigation = useNavigation();
-  const { signIn } = useContext(AuthContext);
+  const { signIn, loadingAuth } = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleLogin(){
+  function handleLogin() {
     signIn(email, password);
     Keyboard.dismiss();
   }
 
   return (
     <Background>
-      <Container behavior={Platform.OS === 'ios' ? 'padding' : ''} enabled>
+      <Container behavior={Platform.OS === "ios" ? "padding" : ""} enabled>
         <Logo source={require("../../assets/Logo.png")} />
 
         <AreaInput>
@@ -49,14 +49,19 @@ export default function SignIn() {
             autoCapitalize="none"
             value={password}
             onChangeText={(text) => setPassword(text)}
+            secureTextEntry={true}
           />
         </AreaInput>
 
         <SubmitButton onPress={handleLogin}>
-          <SubmitText>Acessar</SubmitText>
+          {loadingAuth ? (
+            <ActivityIndicator size={20} color="#000" />
+          ) : (
+            <SubmitText>Acessar</SubmitText>
+          )}
         </SubmitButton>
 
-        <Link onPress={ () => navigation.navigate('SignUp') }>
+        <Link onPress={() => navigation.navigate("SignUp")}>
           <LinkText>Criar uma conta!</LinkText>
         </Link>
       </Container>

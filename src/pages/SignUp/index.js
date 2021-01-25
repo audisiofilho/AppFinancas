@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Platform } from "react-native";
+import { Platform, ActivityIndicator } from "react-native";
 import { AuthContext } from "../../contexts/auth";
-
 
 import {
   Background,
@@ -10,24 +9,23 @@ import {
   AreaInput,
   Input,
   SubmitButton,
-  SubmitText
+  SubmitText,
 } from "../SignIn/styles";
 
 export default function SignUp() {
-  const { signUp } = useContext(AuthContext);
+  const { signUp, loadingAuth } = useContext(AuthContext);
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSignUp(){
+  function handleSignUp() {
     signUp(email, password, nome);
   }
 
   return (
     <Background>
-      <Container behavior={Platform.OS === 'ios' ? 'padding' : ''} enabled>
-
+      <Container behavior={Platform.OS === "ios" ? "padding" : ""} enabled>
         <AreaInput>
           <Input
             placeholder="Nome"
@@ -57,7 +55,11 @@ export default function SignUp() {
         </AreaInput>
 
         <SubmitButton onPress={handleSignUp}>
-          <SubmitText>Cadastrar</SubmitText>
+          {loadingAuth ? (
+            <ActivityIndicator size={20} color="#000" />
+          ) : (
+            <SubmitText>Cadastrar</SubmitText>
+          )}
         </SubmitButton>
       </Container>
     </Background>

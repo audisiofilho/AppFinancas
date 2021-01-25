@@ -10,7 +10,7 @@ export default function Header() {
  return (
    <Container>
        <ButtonMenu onPress={ () => navigation.toggleDrawer() }>
-            <Feather name='menu' color="#fff" size={30}/>
+            <Feather name='menu' color="#fff" size={35}/>
        </ButtonMenu>
    </Container>
   );
